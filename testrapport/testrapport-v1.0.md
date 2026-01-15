@@ -12,21 +12,21 @@ Dit testrapport documenteert de testresultaten van de Crypto REST API versie 1.0
 
 ### Test Statistieken
 
-| Categorie | Totaal | Geslaagd | Gefaald | Overgeslagen |
-|-----------|--------|----------|---------|--------------|
-| Unit Tests | 0 | 0 | 0 | 0 |
-| Integratie Tests | 25 | 25 | 0 | 0 |
-| **Totaal** | **25** | **25** | **0** | **0** |
+| Categorie        | Totaal | Geslaagd | Gefaald | Overgeslagen |
+| ---------------- | ------ | -------- | ------- | ------------ |
+| Unit Tests       | 0      | 0        | 0       | 0            |
+| Integratie Tests | 25     | 25       | 0       | 0            |
+| **Totaal**       | **25** | **25**   | **0**   | **0**        |
 
 ### Code Dekking
 
-| Bestand | Statements | Branches | Functies | Regels |
-|---------|------------|----------|----------|--------|
-| **Totaal** | **86.01%** | **78.18%** | **84%** | **85.82%** |
-| src/app.js | 86.66% | 100% | 66.66% | 86.66% |
-| src/data/watchlist.js | 93.54% | 100% | 80% | 96.29% |
-| src/routes/crypto.js | 96.29% | 100% | 100% | 96.15% |
-| src/services/coingecko.js | 67.44% | 42.85% | 83.33% | 65% |
+| Bestand                   | Statements | Branches   | Functies | Regels     |
+| ------------------------- | ---------- | ---------- | -------- | ---------- |
+| **Totaal**                | **86.01%** | **78.18%** | **84%**  | **85.82%** |
+| src/app.js                | 86.66%     | 100%       | 66.66%   | 86.66%     |
+| src/data/watchlist.js     | 93.54%     | 100%       | 80%      | 96.29%     |
+| src/routes/crypto.js      | 96.29%     | 100%       | 100%     | 96.15%     |
+| src/services/coingecko.js | 67.44%     | 42.85%     | 83.33%   | 65%        |
 
 ---
 
@@ -36,9 +36,9 @@ Dit testrapport documenteert de testresultaten van de Crypto REST API versie 1.0
 
 **Doel:** API status controleren
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-000 | API status ophalen | 200 + statusbericht | GESLAAGD |
+| Test Case | Beschrijving       | Verwacht Resultaat  | Resultaat |
+| --------- | ------------------ | ------------------- | --------- |
+| TC-000    | API status ophalen | 200 + statusbericht | GESLAAGD  |
 
 ---
 
@@ -46,13 +46,14 @@ Dit testrapport documenteert de testresultaten van de Crypto REST API versie 1.0
 
 **Doel:** Lijst van populaire cryptocurrencies ophalen
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-001 | Ophalen zonder parameters | 200 + array van coins | GESLAAGD |
-| TC-002 | Coins hebben verplichte velden (symbol, name, price, change) | Alle velden aanwezig | GESLAAGD |
-| TC-003 | Limit parameter respecteren | Max aantal coins = limit | GESLAAGD |
+| Test Case | Beschrijving                                                 | Verwacht Resultaat       | Resultaat |
+| --------- | ------------------------------------------------------------ | ------------------------ | --------- |
+| TC-001    | Ophalen zonder parameters                                    | 200 + array van coins    | GESLAAGD  |
+| TC-002    | Coins hebben verplichte velden (symbol, name, price, change) | Alle velden aanwezig     | GESLAAGD  |
+| TC-003    | Limit parameter respecteren                                  | Max aantal coins = limit | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 curl http://localhost:3000/crypto
 ```
@@ -63,15 +64,16 @@ curl http://localhost:3000/crypto
 
 **Doel:** Specifieke cryptocurrency ophalen
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-004 | BTC ophalen | 200 + Bitcoin data | GESLAAGD |
-| TC-005 | ETH ophalen | 200 + Ethereum data | GESLAAGD |
-| TC-006 | Hoofdletterongevoelig (btc vs BTC) | 200 + correcte data | GESLAAGD |
-| TC-007 | Ongeldige symbol (1 karakter) | 400 foutmelding | GESLAAGD |
-| TC-008 | Niet-bestaande coin | 404 foutmelding | GESLAAGD |
+| Test Case | Beschrijving                       | Verwacht Resultaat  | Resultaat |
+| --------- | ---------------------------------- | ------------------- | --------- |
+| TC-004    | BTC ophalen                        | 200 + Bitcoin data  | GESLAAGD  |
+| TC-005    | ETH ophalen                        | 200 + Ethereum data | GESLAAGD  |
+| TC-006    | Hoofdletterongevoelig (btc vs BTC) | 200 + correcte data | GESLAAGD  |
+| TC-007    | Ongeldige symbol (1 karakter)      | 400 foutmelding     | GESLAAGD  |
+| TC-008    | Niet-bestaande coin                | 404 foutmelding     | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 curl http://localhost:3000/crypto/BTC
 curl http://localhost:3000/crypto/btc
@@ -84,15 +86,16 @@ curl http://localhost:3000/crypto/BESTAATNIETKEFANSEN
 
 **Doel:** Coin toevoegen aan watchlist
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-009 | Coin toevoegen met alle velden | 201 + coin object | GESLAAGD |
-| TC-010 | Symbol ontbreekt | 400 foutmelding | GESLAAGD |
-| TC-011 | Name ontbreekt | 400 foutmelding | GESLAAGD |
-| TC-012 | Dubbele coin toevoegen | 409 conflict | GESLAAGD |
-| TC-013 | Symbol wordt hoofdletters | Symbol in hoofdletters | GESLAAGD |
+| Test Case | Beschrijving                   | Verwacht Resultaat     | Resultaat |
+| --------- | ------------------------------ | ---------------------- | --------- |
+| TC-009    | Coin toevoegen met alle velden | 201 + coin object      | GESLAAGD  |
+| TC-010    | Symbol ontbreekt               | 400 foutmelding        | GESLAAGD  |
+| TC-011    | Name ontbreekt                 | 400 foutmelding        | GESLAAGD  |
+| TC-012    | Dubbele coin toevoegen         | 409 conflict           | GESLAAGD  |
+| TC-013    | Symbol wordt hoofdletters      | Symbol in hoofdletters | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 curl -X POST http://localhost:3000/crypto \
   -H "Content-Type: application/json" \
@@ -105,12 +108,13 @@ curl -X POST http://localhost:3000/crypto \
 
 **Doel:** Watchlist ophalen
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-014 | Lege watchlist | 200 + lege array | GESLAAGD |
-| TC-015 | Watchlist met coins | 200 + array met coins | GESLAAGD |
+| Test Case | Beschrijving        | Verwacht Resultaat    | Resultaat |
+| --------- | ------------------- | --------------------- | --------- |
+| TC-014    | Lege watchlist      | 200 + lege array      | GESLAAGD  |
+| TC-015    | Watchlist met coins | 200 + array met coins | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 curl http://localhost:3000/crypto/watchlist
 ```
@@ -121,15 +125,16 @@ curl http://localhost:3000/crypto/watchlist
 
 **Doel:** Coin in watchlist bijwerken
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-016 | Notities bijwerken | 200 + bijgewerkte coin | GESLAAGD |
-| TC-017 | Naam bijwerken | 200 + bijgewerkte coin | GESLAAGD |
-| TC-018 | Geen update velden | 400 foutmelding | GESLAAGD |
-| TC-019 | Niet-bestaande coin | 404 foutmelding | GESLAAGD |
-| TC-020 | Hoofdletterongevoelig symbol | 200 + bijgewerkte coin | GESLAAGD |
+| Test Case | Beschrijving                 | Verwacht Resultaat     | Resultaat |
+| --------- | ---------------------------- | ---------------------- | --------- |
+| TC-016    | Notities bijwerken           | 200 + bijgewerkte coin | GESLAAGD  |
+| TC-017    | Naam bijwerken               | 200 + bijgewerkte coin | GESLAAGD  |
+| TC-018    | Geen update velden           | 400 foutmelding        | GESLAAGD  |
+| TC-019    | Niet-bestaande coin          | 404 foutmelding        | GESLAAGD  |
+| TC-020    | Hoofdletterongevoelig symbol | 200 + bijgewerkte coin | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 # Eerst coin toevoegen
 curl -X POST http://localhost:3000/crypto \
@@ -148,13 +153,14 @@ curl -X PUT http://localhost:3000/crypto/BTC \
 
 **Doel:** Coin uit watchlist verwijderen
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-021 | Coin verwijderen | 200 + verwijderde coin | GESLAAGD |
-| TC-022 | Niet-bestaande coin | 404 foutmelding | GESLAAGD |
-| TC-023 | Hoofdletterongevoelig symbol | 200 + verwijderde coin | GESLAAGD |
+| Test Case | Beschrijving                 | Verwacht Resultaat     | Resultaat |
+| --------- | ---------------------------- | ---------------------- | --------- |
+| TC-021    | Coin verwijderen             | 200 + verwijderde coin | GESLAAGD  |
+| TC-022    | Niet-bestaande coin          | 404 foutmelding        | GESLAAGD  |
+| TC-023    | Hoofdletterongevoelig symbol | 200 + verwijderde coin | GESLAAGD  |
 
 **cURL Test:**
+
 ```bash
 curl -X DELETE http://localhost:3000/crypto/BTC
 ```
@@ -165,9 +171,9 @@ curl -X DELETE http://localhost:3000/crypto/BTC
 
 **Doel:** Onbekende routes afhandelen
 
-| Test Case | Beschrijving | Verwacht Resultaat | Resultaat |
-|-----------|--------------|-------------------|-----------|
-| TC-024 | Onbekende route | 404 foutmelding | GESLAAGD |
+| Test Case | Beschrijving    | Verwacht Resultaat | Resultaat |
+| --------- | --------------- | ------------------ | --------- |
+| TC-024    | Onbekende route | 404 foutmelding    | GESLAAGD  |
 
 ---
 
@@ -261,10 +267,10 @@ Alle bestanden |   86.01 |    78.18 |      84 |   85.82 |
 
 ## 5. Bekende Problemen
 
-| Probleem | Beschrijving | Prioriteit | Status |
-|----------|--------------|------------|--------|
-| PROBLEEM-001 | CoinGecko API rate limiting (429) activeert terugval naar mock data | Laag | Werkt zoals verwacht |
-| PROBLEEM-002 | Lagere dekking op coingecko.js (65%) door externe API afhankelijkheid | Medium | Acceptabel |
+| Probleem     | Beschrijving                                                          | Prioriteit | Status               |
+| ------------ | --------------------------------------------------------------------- | ---------- | -------------------- |
+| PROBLEEM-001 | CoinGecko API rate limiting (429) activeert terugval naar mock data   | Laag       | Werkt zoals verwacht |
+| PROBLEEM-002 | Lagere dekking op coingecko.js (65%) door externe API afhankelijkheid | Medium     | Acceptabel           |
 
 ---
 
@@ -281,14 +287,12 @@ Alle bestanden |   86.01 |    78.18 |      84 |   85.82 |
 
 De Crypto REST API v1.0 is **GESLAAGD** voor release.
 
-| Criterium | Vereist | Behaald | Status |
-|-----------|---------|---------|--------|
-| Alle tests slagen | 100% | 100% (25/25) | GESLAAGD |
-| Statement dekking | >80% | 86.01% | GESLAAGD |
-| Regel dekking | >80% | 85.82% | GESLAAGD |
-| Kritieke bugs | 0 | 0 | GESLAAGD |
+| Criterium         | Vereist | Behaald      | Status   |
+| ----------------- | ------- | ------------ | -------- |
+| Alle tests slagen | 100%    | 100% (25/25) | GESLAAGD |
+| Statement dekking | >80%    | 86.01%       | GESLAAGD |
+| Regel dekking     | >80%    | 85.82%       | GESLAAGD |
+| Kritieke bugs     | 0       | 0            | GESLAAGD |
 
 **Goedgekeurd voor release:** Ja
-
-**Handtekening Tester:** _Geautomatiseerd Test Systeem_
 **Datum:** 2026-01-15
